@@ -13,18 +13,14 @@ body {
 }
 
 .visor_juego {
-	/* width: 100%;  */
+	width: 100%;
 	/* No hace falta */
 	height: 95vh;
 	position: relative;
 	/* border:1px solid yellowgreen; */
-
-}
-
-.fondo-header {
-	
 }
 
 .mosca{
 	position: absolute;
+	transform: translate(-50%, -50%);
 }
