@@ -2,6 +2,7 @@
 let marcador = document.getElementById("marcador")
 let ruta = "imagenes/mosca.png"
 let fondo_juego = document.getElementById("fondo_juego")
+let audio = document.getElementById("audio")
 
 let motherfly = document.createElement("IMG")
 motherfly.setAttribute("src", ruta)
@@ -44,6 +45,19 @@ const checkPosition = () => {
 
 }
 
+const killFlies = (event) => {
+    if (event.target.tagName === "IMG") {
+        event.target.setAttribute("src","imagenes/muerta.png")
+        event.target.style.top = (fondo_juego.offsetHeight - motherfly.naturalHeight) + "px"
+        
+        if(!audio.onpause) {
+            audio.currentTime = 0;
+            audio.play()
+        }
+    }
+}
 
 //// EVENTS
 document.addEventListener("DOMContentLoaded", setFlies) 
+
+document.addEventListener("click", (event) => killFlies(event))
