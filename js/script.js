@@ -8,6 +8,15 @@ let motherfly = document.createElement("IMG")
 motherfly.setAttribute("src", ruta)
 motherfly.classList.add("mosca")
 
+// calculate rows and column based on fly dimensions
+let rows = Math.round(fondo_juego.offsetHeight/motherfly.naturalHeight-2)
+let columns = Math.round(fondo_juego.offsetWidth/motherfly.naturalWidth-2)
+// initialize the matrix
+let map = new Array(rows)
+for (let i = 0; i < rows; i++) {
+    map[i]= new Array(columns)
+}
+
 //// FUNCTIONS
 
 const setFlies = () => {
@@ -25,21 +34,13 @@ const setFlies = () => {
     fondo_juego.append(fragment)
 }
 
-const checkPosition = () => {
-    // calculate rows and column based on fly dimensions
-    let rows = Math.round(fondo_juego.offsetHeight/motherfly.naturalHeight-2)
-    let columns = Math.round(fondo_juego.offsetWidth/motherfly.naturalWidth-2)
-    // initialize the matrix
-    let map = new Array(rows)
-    for (let i = 0; i < rows; i++) {
-        map[i]= new Array(columns)
-    }
+const checkPosition = () => {  
     // generate a random position of the array
     let row, col
     do {
-        row = Math.round(Math.random()*rows)
-        col = Math.round(Math.random()*columns)
-    } while (map[row][col] === true)
+        row = Math.round(Math.random()*(rows-1))
+        col = Math.round(Math.random()*(columns-1))
+    } while (!map[row][col] == undefined)
     // fill the position of the matrix
     map[row][col] = true
     // calcute the position based on fly dimensions
